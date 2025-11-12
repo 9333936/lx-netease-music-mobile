@@ -1,17 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext {
-        buildToolsVersion = "35.0.0"
-        minSdkVersion = 21
-        compileSdkVersion = 35
-        targetSdkVersion = 29
-
-        ndkVersion = "26.1.10909125"
-        kotlinVersion = "1.9.24" // Or any version above 1.3.x
+        buildToolsVersion = "28.0.3" // 适配安卓4.1的低版本工具
+        minSdkVersion = 16 // 安卓4.1对应API 16，核心修改
+        compileSdkVersion = 28 // 与minSdk兼容的稳定版本
+        targetSdkVersion = 28 // 统一版本减少冲突
+        ndkVersion = "21.4.7075529" // 低版本NDK支持旧设备
+        kotlinVersion = "1.3.72" // 降级Kotlin适配旧Gradle
         RNNKotlinVersion = kotlinVersion
-
-        // https://github.com/DylanVann/react-native-fast-image/blob/9ab80fcd570b7f56da66ab20e52c9a35934067c9/docs/app-glide-module.md
         excludeAppGlideModule = true
     }
     repositories {
@@ -19,10 +15,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:8.6.1')
+        classpath('com.android.tools.build:gradle:3.6.4') // 降级Gradle插件，适配API 16
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     }
 }
-
 apply plugin: "com.facebook.react.rootproject"
